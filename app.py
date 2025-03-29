@@ -45,27 +45,7 @@ st.markdown("""
         cursor: pointer;
         padding: 0;
             }
-    .scroll-down-btn {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background-color: #5CB338;
-        color: white;
-        border: none;
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-        font-size: 20px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 1000;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    }
-    .scroll-down-btn:hover {
-        background-color: #77B254;
-    }
+    
     
     
             
@@ -189,8 +169,7 @@ for idx, message in enumerate(messages):
                 st.rerun()
 
 
-st.markdown(scroll_js, unsafe_allow_html=True)
-st.markdown('<button class="scroll-down-btn" onclick="scrollToBottom()">↓</button>', unsafe_allow_html=True)
+
 # User input via chat
 prompt = st.chat_input("Ask me to generate some code! (e.g., 'Write a function to add two numbers')")
 if prompt:
