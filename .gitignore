@@ -1,0 +1,5 @@
+y/google-cloud-sdk/
+.env
+__pycache__/
+codegen_env/
+*.log
