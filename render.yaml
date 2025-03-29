@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: anvian-codegen
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python app.py"
+    region: oregon
+    plan: free
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: MONGODB_URI
+        sync: false
+logs:
+  - type: file
+    name: anvian-codegen-logs
+    plan: free
+    region: oregon

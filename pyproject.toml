@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "codegen_agent"
+version = "0.1.0"
+description = "Conversational Code Generation Agent"
+authors = ["Jyots Charan <your-email@example.com>"]
+
+
+[tool.poetry.dependencies]
+python = ">=3.10,<=3.13"  # Updated to match crewai's requirement
+crewai = "0.28.8"
+streamlit = "1.32.0"
+requests = ">=2.32.3"
+python-dotenv = ">=1.0.0"
+pytest = ">=8.0.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
