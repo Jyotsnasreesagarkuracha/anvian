@@ -7,13 +7,23 @@ from pymongo import MongoClient
 from datetime import datetime
 
 # Load environment variables
+# Load environment variables
 load_dotenv()
 
-# MongoDB Setup
+# Get MongoDB URI from environment variables
 MONGO_URI = os.getenv("MONGO_URI")
-client = MongoClient(MONGO_URI)
-db = client["chatbot"]
-collection = db["conversations"]
+
+if not MONGO_URI:
+    raise ValueError("❗ MONGO_URI not found! Ensure it's set in Render environment variables or .env file.")
+
+# MongoDB Connection
+try:
+    client = MongoClient(MONGO_URI)
+    db = client["chatbot"]
+    collection = db["conversations"]
+    print("✅ Successfully connected to MongoDB!")
+except Exception as e:
+    print(f"❌ MongoDB Connection Error: {e}")
 
 # API Key Setup
 API_KEY = os.getenv("GENERATIVE_API_KEY")
