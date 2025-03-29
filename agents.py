@@ -8,19 +8,40 @@ from datetime import datetime
 
 # Load environment variables
 # Load environment variables
+
+import urllib.parse
+
+
+
+
+# Load environment variables
 load_dotenv()
 
-# Get MongoDB URI from environment variables
-MONGO_URI = os.getenv("MONGO_URI")
 
-if not MONGO_URI:
-    raise ValueError("❗ MONGO_URI not found! Ensure it's set in Render environment variables or .env file.")
+# Fetch credentials from .env file
+MONGO_USER = os.getenv("MONGO_USER", "").strip()
+MONGO_PASS = os.getenv("MONGO_PASS", "").strip()
+MONGO_HOST = os.getenv("MONGO_HOST", "").strip()
+MONGO_DB = os.getenv("MONGO_DB", "chatbot").strip()
 
-# MongoDB Connection
+# Ensure credentials are strings before encoding
+if not MONGO_USER or not MONGO_PASS:
+    raise ValueError("❌ ERROR: MongoDB Username/Password is missing. Check your .env file.")
+
+# ✅ Correct URL Encoding (Single Encoding Only)
+MONGO_USER_ENC = urllib.parse.quote(MONGO_USER)   # Not `quote_plus()`
+MONGO_PASS_ENC = urllib.parse.quote(MONGO_PASS)   # Not `quote_plus()`
+
+# Construct MongoDB URI
+MONGO_URI = f"mongodb+srv://{MONGO_USER_ENC}:{MONGO_PASS_ENC}@{MONGO_HOST}/{MONGO_DB}?retryWrites=true&w=majority"
+
+print(f"🔗 Using MongoDB URI: {MONGO_URI}")
+
+# Connect to MongoDB
 try:
     client = MongoClient(MONGO_URI)
-    db = client["chatbot"]
-    collection = db["conversations"]
+    db = client[MONGO_DB]
+    collection = db["your_collection_name"]  # Replace with actual collection name
     print("✅ Successfully connected to MongoDB!")
 except Exception as e:
     print(f"❌ MongoDB Connection Error: {e}")
