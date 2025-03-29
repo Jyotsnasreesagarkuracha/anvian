@@ -3,3 +3,5 @@ streamlit==1.32.0
 requests>=2.32.3
 python-dotenv>=1.0.0
 pytest>=8.0.0
+flask  # Add Flask to resolve the error
+streamlit-autorefresh  # Required for auto-refresh feature
