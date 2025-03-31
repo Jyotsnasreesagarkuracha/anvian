@@ -1,7 +1,7 @@
 # anvian
 
 ## Overview
-Anvian is an AI-powered chatbot for conversational code generation. It supports multiple programming languages and retains context to provide accurate and meaningful responses.
+AI-powered chatbot for conversational code generation. It supports multiple programming languages and retains context to provide accurate and meaningful responses.
 
 ## Features
 - 🧠 **Conversational AI** – Understands and responds in a natural manner.
